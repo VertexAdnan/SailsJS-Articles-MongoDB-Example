@@ -1,4 +1,4 @@
-# ders
+# Example 1
 
 a [Sails v1](https://sailsjs.com) application
 
