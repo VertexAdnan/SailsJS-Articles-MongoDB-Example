@@ -16,8 +16,8 @@
 module.exports.datastores = {
     default: {
         adapter: 'sails-mongo',
-        host: 'your_host',
+        host: 'localhost',
         port: '27017',
-        database: 'your_db'
+        database: 'yapisepeti'
     },
 };

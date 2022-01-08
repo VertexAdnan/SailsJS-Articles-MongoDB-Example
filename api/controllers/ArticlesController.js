@@ -1,14 +1,8 @@
-/**
- * ArticlesController
- *
- * @description :: Server-side actions for handling incoming requests.
- * @help        :: See https://sailsjs.com/docs/concepts/actions
- */
-
-
-
 module.exports = {
     list: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         Articles.find({}).exec(function(err, articles) {
             if (err) {
                 res.send(500, 'Database error');
@@ -17,9 +11,15 @@ module.exports = {
         });
     },
     add: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         res.view('add');
     },
     create: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         var title = req.body.title;
         var body = req.body.body;
 
@@ -31,6 +31,9 @@ module.exports = {
         })
     },
     delete: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         Articles.destroy({ id: req.params.id }).exec(function(err) {
             if (err) {
                 res.send(500, 'DB ERROR');
@@ -40,6 +43,9 @@ module.exports = {
         return false;
     },
     edit: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         //res.send(req.params.id);
         Articles.findOne({ id: req.params.id }).exec(function(err, article) {
             if (err) {
@@ -50,6 +56,9 @@ module.exports = {
         });
     },
     update: function(req, res) {
+        if (!req.session.username)
+            res.redirect('/login');
+
         var title = req.body.title;
         var body = req.body.body;
 

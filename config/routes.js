@@ -9,6 +9,7 @@
  */
 
 const ArticlesController = require("../api/controllers/ArticlesController");
+const SessionControlController = require("../api/controllers/SessionControlController");
 const UsersController = require("../api/controllers/UsersController");
 
 module.exports.routes = {
@@ -22,13 +23,19 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+  '/': SessionControlController.checker,
   '/articles/list': ArticlesController.list,
   '/articles/add': ArticlesController.add,
   'POST /articles/create': ArticlesController.create,
   'POST /articles/delete/:id': ArticlesController.delete,
   '/articles/edit/:id': ArticlesController.edit,
   'POST /articles/update/:id': ArticlesController.update,
+
+  '/test': UsersController.test,
+  '/login': UsersController.login,
+  'POST /login': UsersController.loginProcess,
+  'POST /createUser': UsersController.create,
+  '/logout': UsersController.logout,
 
 
   /***************************************************************************
